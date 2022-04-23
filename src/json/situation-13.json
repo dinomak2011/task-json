@@ -1,0 +1,44 @@
+{
+  "consequencesIndicators": [
+    {
+      "factor": 7,
+      "factorName": "Административная ответственность",
+      "indicator": 38,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 8,
+      "factorName": "Гражданско-правовая ответственность",
+      "indicator": 40,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 8,
+      "factorName": "Гражданско-правовая ответственность",
+      "indicator": 41,
+      "indicatorName": "Да",
+      "indicatorWeight": 3
+    }
+  ],
+  "factorsIndicators": [
+    {
+      "factor": 1,
+      "factorName": "Возможно ли получение исполнителем действия в результате исполнения действия материальной выгоды?",
+      "indicator": 5,
+      "indicatorName": "До 1 000 000 руб.",
+      "indicatorWeight": 3
+    },
+    {
+      "factor": 3,
+      "factorName": "Осуществляется ли в рамках исполнения действия управление и распоряжение государственным имуществом?",
+      "indicator": 18,
+      "indicatorName": "На сумму до 500 000 руб.",
+      "indicatorWeight": 2
+    }
+  ],
+  "coefficient": 0,
+  "name": "Тестовая 2",
+  "situation": 13
+}

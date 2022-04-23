@@ -1,0 +1,79 @@
+{
+  "consequencesIndicators": [
+    {
+      "factor": 7,
+      "factorName": "Административная ответственность",
+      "indicator": 38,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 10,
+      "factorName": "Уголовная ответственность",
+      "indicator": 45,
+      "indicatorName": "Да",
+      "indicatorWeight": 3
+    },
+    {
+      "factor": 11,
+      "factorName": "Нарушение правил информационной безопасности",
+      "indicator": 46,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 11,
+      "factorName": "Нарушение правил информационной безопасности",
+      "indicator": 47,
+      "indicatorName": "Да",
+      "indicatorWeight": 3
+    },
+    {
+      "factor": 15,
+      "factorName": "Финансовый и/или материальный ущерб, потеря, нецелевое и/или неэффективное использование бюджетных средств",
+      "indicator": 54,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    }
+  ],
+  "factorsIndicators": [
+    {
+      "factor": 1,
+      "factorName": "Возможно ли получение исполнителем действия в результате исполнения действия материальной выгоды?",
+      "indicator": 5,
+      "indicatorName": "До 1 000 000 руб.",
+      "indicatorWeight": 3
+    },
+    {
+      "factor": 1,
+      "factorName": "Возможно ли получение исполнителем действия в результате исполнения действия материальной выгоды?",
+      "indicator": 5,
+      "indicatorName": "До 1 000 000 руб.",
+      "indicatorWeight": 3
+    },
+    {
+      "factor": 2,
+      "factorName": "Принимаются ли в рамках исполнения действия организационно-распорядительные (административные), либо финансово-хозяйственных решения?",
+      "indicator": 8,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 3,
+      "factorName": "Осуществляется ли в рамках исполнения действия управление и распоряжение государственным имуществом?",
+      "indicator": 15,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 3,
+      "factorName": "Осуществляется ли в рамках исполнения действия управление и распоряжение государственным имуществом?",
+      "indicator": 16,
+      "indicatorName": "Да",
+      "indicatorWeight": 1
+    }
+  ],
+  "coefficient": 2,
+  "name": "Ситуация 1",
+  "situation": 8
+}

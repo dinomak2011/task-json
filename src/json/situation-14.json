@@ -1,0 +1,22 @@
+{
+  "consequencesIndicators": [
+    {
+      "factor": 8,
+      "factorName": "Гражданско-правовая ответственность",
+      "indicator": 40,
+      "indicatorName": "Нет",
+      "indicatorWeight": 0
+    },
+    {
+      "factor": 8,
+      "factorName": "Гражданско-правовая ответственность",
+      "indicator": 41,
+      "indicatorName": "Да",
+      "indicatorWeight": 3
+    }
+  ],
+  "factorsIndicators": [],
+  "coefficient": 0,
+  "name": "Тестовая ситуация",
+  "situation": 14
+}
