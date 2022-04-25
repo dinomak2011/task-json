@@ -147,14 +147,13 @@
       <b-table class="table-bordered rounded table-borderless"
                head-row-variant="primary"
                :items="items"
-               :fields="fields"
-               v-model="form.value">
+               :fields="fields">
         <template #cell(text)="data">
-          <b-form-checkbox-group :state="validateState('value')">
-            <b-form-checkbox>
-              {{data.item.text}}
+            <b-form-checkbox
+                @change="()=>{selectItems(data.item.value)}"
+                :state="validateState('selectedItems')"
+                :checked="data.item.checked">{{data.item.text}}
             </b-form-checkbox>
-          </b-form-checkbox-group>
         </template>
       </b-table>
       </b-row>
@@ -193,10 +192,11 @@
                head-row-variant="primary"
                :fields="fields"
                :items="factors">
-        <template #cell(text)="data">
-          <b-form-checkbox>
-            {{data.item.text}}
-          </b-form-checkbox>
+        <template #cell(text) ="data">
+            <b-form-checkbox @change="()=>{selectFactor(data.item.value)}"
+                             :state="validateState('selectedFactors')"
+                             :checked="data.item.checked">{{data.item.text}}
+            </b-form-checkbox>
         </template>
         </b-table>
       </b-row>
@@ -212,8 +212,7 @@
       <b-row class="pt-5 select-bu d-flex justify-content-start">
         <div class="ps-0 pe-0">
           <b-button type="submit" variant="primary">Cохранить</b-button>
-
-          <b-button class="ml-2" @click="resetForm()">Очистить</b-button>
+          <b-button class="ml-2"> Отмена </b-button>
         </div>
       </b-row>
 
@@ -223,6 +222,8 @@
 </template>
 
 <script>
+
+import _ from 'lodash';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import useVuelidate from '@vuelidate/core'
@@ -238,15 +239,16 @@ export default {
       item:'',
       form: {
         situation: null,
-        factors: null,
-        items: null,
+        factors: [],
+        items: [],
         situationsName: null,
         author: null,
         factorName: null,
         funcName: null,
         active: null,
         acceptTerms: false,
-        value: false,
+        selectedFactors: [],
+        selectedItems: []
       },
       fields: [
         {
@@ -264,10 +266,10 @@ export default {
         { value: 3, text: "Ситуация 3"}
       ],
       items:[
-        {text: 'До 500 000', value:1},
-        {text: 'От 500 000 до 1 000 000', value:2},
-        {text: 'От 1 000 000 до 5 000 000', value:3},
-        {text: 'Свыше 5 000 000', value:4},
+        {text: 'До 500 000', value:1, checked: false},
+        {text: 'От 500 000 до 1 000 000', value:2, checked: false},
+        {text: 'От 1 000 000 до 5 000 000', value:3, checked: false},
+        {text: 'Свыше 5 000 000', value:4, checked: false},
       ],
       factors:[
         {text: 'Ветеринария', value:1},
@@ -286,9 +288,9 @@ export default {
         { value: 3, text: "Имя 3"}
       ],
        factorName: [
-        { value: 1, text: "Фактора 1" },
-        { value: 2, text: "Фактора 2" },
-        { value: 3, text: "Фактора 3"}
+        { value: 1, text: "Фактора 1", checked: false},
+        { value: 2, text: "Фактора 2",checked: false},
+        { value: 3, text: "Фактора 3", checked: false}
       ],
       funcName: [
         { value: 1, text: "Функция 1" },
@@ -313,38 +315,58 @@ export default {
       funcName: { required },
       active: { required },
       acceptTerms: { mustBeTrue(value) {return value}},
-      value:{ mustBeTrue(value) {return value} }
+      selectedFactors: { required },
+      selectedItems: { required },
     },
   },
   computed: {
-    state(){
-      return this.form.value > 0
-    }
   },
   methods:{
+    selectFactor(id){
+      this.$v.form.selectedFactors.$touch()
+      if(this.form.selectedFactors.includes(id)){
+        this.form.selectedFactors = _.without(this.form.selectedFactors,id)
+      }else{
+        this.form.selectedFactors.push(id)
+      }
+      console.log(this.form.selectedFactors.length)
+    },
+    selectItems(id){
+      this.$v.form.selectedItems.$touch()
+      if(this.form.selectedItems.includes(id)){
+        this.form.selectedItems = _.without(this.form.selectedItems,id)
+      }else{
+        this.form.selectedItems.push(id)
+      }
+      console.log(this.form.selectedItems.length)
+    },
       onSubmit(){
         this.$v.form.$touch();
         if (this.$v.form.$anyError){
           return
         }
       },
-    resetForm() {
-      this.form = {
-        situation: null,
-        factors: null,
-        items: null,
-        situationsName: null,
-        author: null,
-        factorName: null,
-        funcName: null,
-        active: null,
-        value: null,
-      };
-
-      this.$nextTick(() => {
-        this.$v.$reset();
-      });
-    },
+    // resetForm() {
+    //   this.form = {
+    //     situation: null,
+    //     factors: null,
+    //     items: null,
+    //     situationsName: null,
+    //     author: null,
+    //     factorName: null,
+    //     funcName: null,
+    //     active: null,
+    //     value: null,
+    //     selectedFactors: [],
+    //   };
+    //   this.factors.forEach(item=> item.checked =false)
+    //   this.$v.factors.$touch()
+    //   this.$v.form.selectedFactors.$touch()
+    //
+    //   this.$nextTick(() => {
+    //     this.$v.$reset();
+    //   });
+    // },
       validateState(name) {
       const { $dirty, $error } = this.$v.form[name];
       return $dirty ? !$error : null;
