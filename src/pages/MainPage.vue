@@ -77,6 +77,9 @@
             <template #cell(№)="data">
               {{ data.index + 1 }}
             </template>
+            <template #cell(factorName)="data">
+              {{data.item.factorName}}
+            </template>
           </b-table>
         </template>
 
@@ -89,9 +92,6 @@
                    :fields="fields">
             <template #cell(№)="data">
               {{ data.index + 1 }}
-            </template>
-            <template #cell(factorName)="data">
-              <b-col>{{data.item.factorName}}</b-col>
             </template>
           </b-table>
         </template>
@@ -112,6 +112,7 @@ import situation8 from '../json/situation-8.json'
 export default {
   data(){
     return{
+      sortedUniq: [],
       situations: situationsList.items,
       selected: '',
       selectedSituation: '',
@@ -164,7 +165,6 @@ export default {
     toggle(){
       this.currentMode = !this.currentMode
     },
-
   },
   computed:{
 
